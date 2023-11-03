@@ -1,13 +1,13 @@
 import prompt from 'prompt-sync';
-import Character from "./Personagem";
+import { Druid } from './Druid';
 
-let sansa: Character = new Character("Sansa",100,40,20,20);
+let mage: Druid = new Druid("The Coisa");
 
 let teclado = prompt();
 let option: number = 0;
 
-while (option != 9) {
-    console.log("+========= Character =============+");
+while (mage.isDead() && option !=9 ) {
+    console.log(`+========= mage ${mage.name} =============+`);
     console.log("|1. Attack                |");
     console.log("|2. Rest                |");
     console.log("|3. Status            |");
@@ -18,19 +18,23 @@ while (option != 9) {
 
     switch (option) {
         case 1:
-            let spent = sansa.fight()
+            let spent: number = mage.fight()
             console.log('This battle made you spent '+spent+"energy points");
+            console.log(mage.status())
             break;
         case 2:
-            sansa.rest();
+            mage.rest();
             break
         case 3:
-            sansa.status();
+            mage.status();
             break;
         default:
             break;
     }
 }
+console.log(mage.mageSkill)
+console.log(mage.mana)
+console.log("You're dead!")
 
 
 
